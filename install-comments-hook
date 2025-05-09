@@ -45,7 +45,7 @@ add_comments() {
         PATTERN="${PATTERN:${#SEPARATOR}}"
         EXCMD="set expandtab softtabstop=4 tabstop=4 shiftwidth=4"
         # Let vi search for the newly installed packages, redirect I/O to terminal
-        $VEDITOR -c "$EXCMD" +/"$PATTERN" "$PKGS_LOGFILE" < /dev/tty > /dev/tty
+        script -q -c "$VEDITOR -c '$EXCMD' '+/$PATTERN' '$PKGS_LOGFILE'" /dev/null < /dev/tty > /dev/tty
     else
         echo -e "\033[1;33mwarning:\033[0m vi not available -- add comments to ${PKGS_LOGFILE} manually"
     fi
